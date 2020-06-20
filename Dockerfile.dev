@@ -5,9 +5,13 @@ FROM node:alpine
 WORKDIR '/app'
 
 copy package.json .
-RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+# for CN
+#RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+#RUN cnpm install
 
-RUN cnpm install
+# for US
+RUN npm install
+
 copy . .
 
 CMD ["npm", "run", "start"]
