@@ -1,0 +1,13 @@
+# 构建：docker build . -t simple-react -f Dockerfile.dev
+# 运行：docker run -it -p 3000:3000 simple-react
+FROM node:alpine
+
+WORKDIR '/app'
+
+copy package.json .
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+RUN cnpm install
+copy . .
+
+CMD ["npm", "run", "start"]
